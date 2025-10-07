@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>GlobalPulse360 — v3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#0b6efd; --bg:#f7fafc; --card:#fff; --muted:#6b7280; --text:#0f172a;
+      --dark-bg:#0b1220; --dark-card:#07111a; --dark-text:#e6eef8; --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+    .wrap{max-width:var(--maxw);margin:18px auto;padding:0 14px}
+    header.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted)}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--accent);font-size:18px}
+    nav.nav{background:var(--card);padding:10px 12px;border-radius:10px;display:flex;gap:8px;align-items:center;box-shadow:0 1px 6px rgba(2,6,23,0.06);overflow:auto}
+    nav .tab{cursor:pointer;padding:8px 10px;border-radius:8px;font-weight:600;white-space:nowrap}
+    nav .tab.active{background:linear-gradient(90deg,var(--accent),#2b8cff);color:white}
+    .search{margin-left:auto}
+    .search input{padding:8px;border-radius:8px;border:1px solid #e6edf3;width:200px}
+    .controls{display:flex;gap:8px;align-items:center}
+    .hero{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:16px}
+    .card{background:var(--card);border-radius:10px;padding:12px;box-shadow:0 1px 6px rgba(2,6,23,0.04)}
+    .main-head{position:relative;height:330px;border-radius:10px;overflow:hidden;background-size:cover;background-position:center;color:#fff;display:flex;flex-direction:column;justify-content:flex-end}
+    .overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%, rgba(0,0,0,0.55))}
+    .meta{position:relative;padding:18px;z-index:2}
+    .main-title{font-family:Merriweather,serif;font-size:22px;margin:0}
+    .breaking{display:flex;flex-direction:column;gap:12px;height:330px;overflow:auto}
+    .brief{display:flex;gap:10px;align-items:center}
+    .brief img{width:84px;height:64px;object-fit:cover;border-radius:6px}
+    .layout{display:grid;grid-template-columns:1fr 320px;gap:16px;margin-top:16px}
+    .category-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .article-card img{width:100%;height:160px;object-fit:cover;border-radius:8px;display:block}
+    .article-card h4{margin:8px 0 4px;font-size:16px}
+    .article-card p{margin:0;color:var(--muted);font-size:13px}
+    aside.sidebar{display:flex;flex-direction:column;gap:12px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{background:#eef2ff;color:var(--accent);padding:6px 8px;border-radius:999px;font-weight:700;font-size:13px}
+    footer{margin-top:20px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;padding-bottom:40px}
+    .btn{padding:8px 10px;border-radius:8px;border:0;background:var(--accent);color:white;font-weight:700;cursor:pointer}
+    .small{font-size:13px;color:var(--muted)}
+    /* fade-in */
+    .fade-in{animation:fadeIn 420ms ease both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    /* Theme: dark */
+    body.dark{background:var(--dark-bg);color:var(--dark-text)}
+    body.dark .card{background:var(--dark-card);box-shadow:none}
+    body.dark nav.nav{background:transparent}
+    body.dark .search input{background:#07111a;border:1px solid #10202d;color:var(--dark-text)}
+    body.dark .tag{background:#0a2236;color:#72b3ff}
+    /* Responsive */
+    @media (max-width:900px){.hero{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.category-row{grid-template-columns:repeat(2,1fr)}.search input{width:140px}}
+    @media (max-width:520px){.category-row{grid-template-columns:1fr}.brand{font-size:16px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">GlobalPulse360</div>
+      <div class="small" id="dateTime">Loading date...</div>
+      <div class="controls">
+        <label style="display:flex;align-items:center;gap:8px">
+          <input id="themeToggle" type="checkbox" /> Dark
+        </label>
+      </div>
+    </header>
+
+    <nav class="nav" id="nav">
+      <div class="tab active" data-cat="home">Home</div>
+      <div class="tab" data-cat="world">World</div>
+      <div class="tab" data-cat="business">Business</div>
+      <div class="tab" data-cat="technology">Tech</div>
+      <div class="tab" data-cat="finance">Finance</div>
+      <div class="tab" data-cat="sports">Sports</div>
+      <div class="tab" data-cat="entertainment">Entertainment</div>
+      <div class="tab" data-cat="science">Science</div>
+      <div class="tab" data-cat="africa">Africa</div>
+      <div class="tab" data-cat="weather">Weather</div>
+      <div style="margin-left:auto" class="search"><input id="searchInput" placeholder="Search news..." /></div>
+    </nav>
+
+    <section class="hero">
+      <div class="card main-head" id="mainHeadline" style="background-image:url('https://via.placeholder.com/1200x700?text=Loading')">
+        <div class="overlay"></div>
+        <div class="meta">
+          <div id="mainSource" class="small">Source</div>
+          <h2 class="main-title" id="mainTitle">Loading top headline...</h2>
+          <div style="margin-top:8px"><a id="mainUrl" href="#" target="_blank" style="color:#dbeafe;text-decoration:underline;font-weight:700">Read full</a></div>
+        </div>
+      </div>
+
+      <div class="card breaking" id="breaking">
+        <div style="font-weight:700;margin-bottom:6px">Breaking</div>
+        <!-- breaking items injected here -->
+      </div>
+    </section>
+
+    <main class="layout">
+      <section>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3 style="margin:0">Top Stories</h3>
+          <div class="small">Auto-updates — powered by NewsAPI</div>
+        </div>
+
+        <div style="margin-top:12px" class="card category-row" id="topStories"></div>
+
+        <h3 style="margin-top:18px">More from this category</h3>
+        <div class="card category-row" id="moreStories"></div>
+
+        <div style="margin-top:12px; text-align:center" id="loadMoreWrap"></div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="card">
+          <div style="font-weight:700;margin-bottom:8px">Trending</div>
+          <div class="tags" id="trendingTags">
+            <div class="tag">#AI</div>
+            <div class="tag">#Climate</div>
+            <div class="tag">#Elections</div>
+            <div class="tag">#Markets</div>
+          </div>
+        </div>
+
+        <div class="card" id="weatherCard">
+          <div style="font-weight:700;margin-bottom:8px">Weather</div>
+          <div id="weatherInfo" class="small">Allow location to see weather...</div>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:700;margin-bottom:8px">Newsletter</div>
+          <input id="email" placeholder="Enter your email" style="padding:8px;border-radius:8px;border:1px solid #e6edf3;width:100%">
+          <button id="subscribe" class="btn" style="margin-top:8px">Subscribe</button>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div>© GlobalPulse360 — curated headlines</div>
+      <div style="display:flex;gap:12px"><a href="#">About</a><a href="#">Contact</a><a href="#">Privacy</a></div>
+    </footer>
+  </div>
+
+  <script>
+    // ---------- CONFIG ----------
+    const NEWSAPI_KEY = "6d98c915f6c14f38a758de81fd474ab6"; // <-- paste your NewsAPI key
+    const WEATHER_API_KEY = "61e7f9c8817a03fb381a5f12c8d78091"; // <-- paste your OpenWeatherMap key
+    const PAGE_SIZE = 6;
+    const DEFAULT_IMG = "https://via.placeholder.com/800x450?text=No+Image";
+
+    // ---------- UTIL ----------
+    function escapeHtml(s){ if(!s) return ""; return s.replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":\"&#39;\"}[m])); }
+    function timeAgo(dateStr){
+      if(!dateStr) return "";
+      const d = new Date(dateStr), diff = Math.floor((Date.now()-d)/1000);
+      if(diff < 60) return diff + "s";
+      if(diff < 3600) return Math.floor(diff/60) + "m";
+      if(diff < 86400) return Math.floor(diff/3600) + "h";
+      return Math.floor(diff/86400) + "d";
+    }
+
+    // ---------- DATE/TIME (auto-update) ----------
+    function updateDateTime(){
+      const el = document.getElementById('dateTime');
+      const now = new Date();
+      const opts = {weekday:'short', year:'numeric', month:'short', day:'numeric'};
+      const date = now.toLocaleDateString(undefined, opts);
+      const time = now.toLocaleTimeString(undefined, {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+      el.textContent = `${date} · ${time}`;
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    // ---------- THEME ----------
+    const themeToggle = document.getElementById('themeToggle');
+    function applyTheme(saved){
+      if(saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches)){
+        document.body.classList.add('dark'); themeToggle.checked = true;
+      } else { document.body.classList.remove('dark'); themeToggle.checked = false; }
+    }
+    const stored = localStorage.getItem('gp360_theme'); applyTheme(stored);
+    themeToggle.addEventListener('change', (e)=>{ const t = e.target.checked ? 'dark' : 'light'; localStorage.setItem('gp360_theme', t); applyTheme(t); });
+
+    // ---------- NAV & SEARCH ----------
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    let currentCategory = 'home';
+    // state for pagination per category
+    const state = {};
+    function ensureState(cat){
+      if(!state[cat]) state[cat] = {page:1, articles:[], totalResults:0, lastQuery:null};
+    }
+    tabs.forEach(t=>{
+      t.addEventListener('click', ()=> {
+        tabs.forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        const cat = t.dataset.cat;
+        currentCategory = cat;
+        if(cat === 'weather'){ showWeatherOnly(); } else { // reset to page 1 if switching category
+          ensureState(cat);
+          // if we already have articles for this cat, render from state; else load
+          if(state[cat].articles.length) renderFromState(cat);
+          else { state[cat].page = 1; state[cat].articles = []; state[cat].totalResults = 0; loadCategory(cat); }
+        }
+      });
+    });
+
+    document.getElementById('searchInput').addEventListener('keypress', async (e)=>{
+      if(e.key !== 'Enter') return;
+      const q = e.target.value.trim(); if(!q) return;
+      // reset a special search state
+      const sKey = 'search:' + q;
+      currentCategory = sKey;
+      ensureState(sKey);
+      state[sKey].page = 1; state[sKey].articles = []; state[sKey].totalResults = 0; state[sKey].lastQuery = q;
+      await loadSearch(q);
+      // mark no tab as active
+      tabs.forEach(x=>x.classList.remove('active'));
+    });
+
+    // ---------- FETCH HELP ----------
+    async function newsFetch(endpoint){
+      if(!NEWSAPI_KEY || NEWSAPI_KEY.includes('YOUR_')) {
+        console.warn('Set NEWSAPI_KEY to fetch live news.');
+        return null;
+      }
+      const url = 'https://newsapi.org/v2/' + endpoint + '&pageSize=' + PAGE_SIZE + '&page=' + (ensurePageParam() || 1) + '&apiKey=' + NEWSAPI_KEY;
+      try{
+        const r = await fetch(url);
+        if(!r.ok) throw new Error('HTTP ' + r.status);
+        return await r.json();
+      }catch(err){
+        console.error('newsFetch error', err);
+        return null;
+      }
+    }
+    function ensurePageParam(){ // used to give page param to newsFetch (reads from current category state)
+      const cat = currentCategory;
+      ensureState(cat);
+      return state[cat].page;
+    }
+
+    // ---------- RENDER HELP ----------
+    function makeCard(article){
+      const div = document.createElement('div'); div.className = 'article-card fade-in';
+      const img = article.urlToImage || DEFAULT_IMG;
+      div.innerHTML = `<img src="${escapeHtml(img)}" alt=""><h4><a href="${article.url}" target="_blank">${escapeHtml(article.title)}</a></h4><p>${escapeHtml(article.source.name || '')} · ${timeAgo(article.publishedAt)}</p>`;
+      return div;
+    }
+    function clearSection(){
+      document.getElementById('topStories').innerHTML=''; document.getElementById('moreStories').innerHTML=''; document.getElementById('breaking').querySelectorAll('.dynamic')?.forEach(n=>n.remove());
+    }
+
+    // ---------- LOAD & PAGINATION ----------
+    async function loadHome(){
+      // behave as category 'home'
+      currentCategory = 'home'; ensureState('home');
+      state['home'].page = 1; state['home'].articles = []; state['home'].totalResults = 0;
+      await loadCategory('home');
+    }
+
+    async function loadCategory(cat){
+      ensureState(cat);
+      // for search special key, handle separately
+      // if page >1, we append; else we reset visible lists
+      const isLoadMore = state[cat].page > 1;
+      if(!isLoadMore) clearSection();
+      // build endpoint based on category
+      let endpoint = '';
+      if(cat === 'home') endpoint = 'top-headlines?language=en';
+      else if(cat === 'finance') endpoint = 'everything?q=finance OR markets OR stocks&language=en';
+      else if(cat === 'africa') endpoint = 'top-headlines?language=en&country=ng';
+      else if(cat === 'world') endpoint = 'top-headlines?language=en';
+      else {
+        const allowed = ['business','entertainment','science','sports','technology'];
+        if(allowed.includes(cat)) endpoint = 'top-headlines?category=' + cat + '&language=en';
+        else endpoint = 'top-headlines?language=en';
+      }
+
+      // append page param inside newsFetch via ensurePageParam
+      const resp = await newsFetch(endpoint);
+      if(resp && resp.articles){
+        state[cat].totalResults = resp.totalResults || 0;
+        // append articles
+        state[cat].articles = state[cat].articles.concat(resp.articles || []);
+        renderFromState(cat);
+      } else {
+        // show message
+        const topEl = document.getElementById('topStories'); topEl.innerHTML = '<div style="padding:12px;color:var(--muted)">No stories or API limit reached.</div>';
+        updateLoadMoreVisibility(cat);
+      }
+    }
+
+    function renderFromState(cat){
+      const topEl = document.getElementById('topStories');
+      const moreEl = document.getElementById('moreStories');
+      topEl.innerHTML = ''; moreEl.innerHTML = '';
+      const arr = state[cat].articles || [];
+      // first PAGE_SIZE articles go to topStories, rest to moreStories (but if multiple pages exist, keep ordering)
+      arr.slice(0, PAGE_SIZE).forEach(a => topEl.appendChild(makeCard(a)));
+      arr.slice(PAGE_SIZE).forEach(a => moreEl.appendChild(makeCard(a)));
+      // put main headline as the first article if present
+      if(arr[0]){
+        document.getElementById('mainHeadline').style.backgroundImage = `url('${arr[0].urlToImage||DEFAULT_IMG}')`;
+        document.getElementById('mainTitle').textContent = arr[0].title || '';
+        document.getElementById('mainSource').textContent = arr[0].source.name || '';
+        document.getElementById('mainUrl').href = arr[0].url || '#';
+        // update breaking (show next few)
+        const br = document.getElementById('breaking'); br.querySelectorAll('.dynamic')?.forEach(n=>n.remove());
+        arr.slice(1,5).forEach(a=>{
+          const node = document.createElement('div'); node.className='brief dynamic';
+          node.innerHTML = `<img src="${a.urlToImage||DEFAULT_IMG}" alt=""><div><a href="${a.url}" target="_blank" style="font-weight:700;color:inherit;text-decoration:none">${escapeHtml(a.title)}</a><div style="color:var(--muted);font-size:13px">${escapeHtml(a.source.name)} · ${timeAgo(a.publishedAt)}</div></div>`;
+          br.appendChild(node);
+        });
+      }
+      updateLoadMoreVisibility(cat);
+    }
+
+    function updateLoadMoreVisibility(cat){
+      ensureState(cat);
+      const wrap = document.getElementById('loadMoreWrap'); wrap.innerHTML = '';
+      const shown = state[cat].articles.length;
+      const total = state[cat].totalResults || 0;
+      // show "Load more" only if there are more to fetch AND we've loaded at least one page
+      if(total > shown){
+        const btn = document.createElement('button'); btn.className='btn'; btn.textContent='Load more';
+        btn.addEventListener('click', async ()=>{
+          state[cat].page = (state[cat].page||1) + 1;
+          btn.disabled = true; btn.textContent = 'Loading...';
+          await loadCategory(cat);
+          btn.disabled = false; btn.textContent = 'Load more';
+          // small scroll to show new content
+          setTimeout(()=>{ window.scrollTo({top: document.body.scrollHeight - 300, behavior:'smooth'}); }, 200);
+        });
+        wrap.appendChild(btn);
+      }
+    }
+
+    // ---------- SEARCH ----------
+    async function loadSearch(q){
+      const sKey = currentCategory; // was set before calling
+      ensureState(sKey);
+      // build endpoint for search: everything?q=
+      const endpoint = 'everything?q=' + encodeURIComponent(q) + '&language=en&sortBy=publishedAt';
+      const resp = await newsFetch(endpoint);
+      if(resp && resp.articles){
+        state[sKey].totalResults = resp.totalResults || 0;
+        state[sKey].articles = state[sKey].articles.concat(resp.articles || []);
+        renderFromState(sKey);
+      } else {
+        document.getElementById('topStories').innerHTML = '<div style="padding:12px;color:var(--muted)">No results.</div>';
+        updateLoadMoreVisibility(sKey);
+      }
+    }
+
+    // ---------- WEATHER (GPS) ----------
+    async function fetchWeather(lat, lon){
+      const el = document.getElementById('weatherInfo');
+      if(!WEATHER_API_KEY || WEATHER_API_KEY.includes('YOUR_')) {
+        el.textContent = 'Add your OpenWeatherMap API key to view weather here.';
+        return;
+      }
+      try{
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`;
+        const r = await fetch(url);
+        const data = await r.json();
+        if(!data || data.cod !== 200){
+          el.textContent = 'Unable to fetch weather: ' + (data.message || 'error');
+          return;
+        }
+        const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+        el.innerHTML = `<div style="display:flex;gap:10px;align-items:center">
+          <img src="${icon}" alt="weather" style="width:64px;height:64px">
+          <div>
+            <div style="font-weight:700">${data.name}, ${data.sys.country}</div>
+            <div class="small">${Math.round(data.main.temp)}°C · ${data.weather[0].main}</div>
+            <div class="small">Feels ${Math.round(data.main.feels_like)}°C · Humidity ${data.main.humidity}%</div>
+          </div>
+        </div>`;
+      }catch(err){
+        el.textContent = 'Weather fetch error';
+        console.error(err);
+      }
+    }
+
+    function showWeatherOnly(){
+      document.getElementById('topStories').innerHTML = '<div style="padding:12px;color:var(--muted)">Weather is shown in the right-hand card. Allow location access to see local weather.</div>';
+      document.getElementById('mainTitle').textContent = 'Local Weather';
+      document.getElementById('mainHeadline').style.backgroundImage = `url('https://via.placeholder.com/1200x700?text=Weather')`;
+      document.getElementById('breaking').innerHTML = '<div style="font-weight:700;margin-bottom:6px">Weather</div><div class="small">Allow location to fetch weather data.</div>';
+    }
+
+    function loadWeatherByGeolocation(){
+      if(!navigator.geolocation) {
+        document.getElementById('weatherInfo').textContent = 'Geolocation not supported by this browser.';
+        return;
+      }
+      navigator.geolocation.get
