@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GlobalPulse360 — World News</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj4KICA8ZGVmcz4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iYmciIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjUwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxNDE4MjAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDgwYTBmIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJnbG9iZSIgY3g9IjQwJSIgY3k9IjM1JSIgcj0iNjAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFlMmQ0YSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwYTE2MjgiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8Y2xpcFBhdGggaWQ9ImNjIj4KICAgICAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNSIgcj0iMTAiLz4KICAgIDwvY2xpcFBhdGg+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgcng9IjYiIGZpbGw9InVybCgjYmcpIi8+CiAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNSIgcj0iMTAiIGZpbGw9InVybCgjZ2xvYmUpIiBzdHJva2U9IiNjOWE4NGMiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuNyIvPgogIDxnIGNsaXAtcGF0aD0idXJsKCNjYykiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSIwLjQiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuMjUiPgogICAgPGxpbmUgeDE9IjYiIHkxPSIxNSIgeDI9IjI2IiB5Mj0iMTUiLz4KICAgIDxsaW5lIHgxPSIxNiIgeTE9IjUiIHgyPSIxNiIgeTI9IjI1Ii8+CiAgICA8ZWxsaXBzZSBjeD0iMTYiIGN5PSIxNSIgcng9IjEwIiByeT0iNSIvPgogICAgPGVsbGlwc2UgY3g9IjE2IiBjeT0iMTUiIHJ4PSI1IiByeT0iMTAiLz4KICA8L2c+CiAgPHBhdGggZD0iTSA1IDE1IEwgOCAxNSBMIDEwIDExIEwgMTIgMTkgTCAxNCAxMyBMIDE2IDE3IEwgMTggMTIgTCAyMCAxOSBMIDIyIDE0IEwgMjQgMTUgTCAyNyAxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZThjOTZhIiBzdHJva2Utd2lkdGg9IjEuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNyIgcj0iMS41IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjk1Ii8+Cjwvc3ZnPgo="/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --black: #080a0f;
+  --deep: #0e1117;
+  --surface: #141820;
+  --surface2: #1c2230;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --gold-dim: rgba(201,168,76,0.15);
+  --white: #f0ede8;
+  --white-dim: rgba(240,237,232,0.55);
+  --white-faint: rgba(240,237,232,0.25);
+  --red: #d94040;
+  --blue: #3a7bd5;
+  --radius: 10px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+  opacity:0.6;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  background: var(--deep);
+  border-bottom: 1px solid var(--border);
+  padding: 0.45rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.topbar-left {
+  font-size: 0.7rem;
+  color: var(--white-faint);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.topbar-right {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.7rem;
+  color: var(--white-faint);
+  letter-spacing: 0.06em;
+}
+
+.topbar-right span { cursor: pointer; transition: color 0.2s; }
+.topbar-right span:hover { color: var(--gold); }
+
+/* ── HEADER ── */
+header {
+  background: var(--deep);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  backdrop-filter: blur(20px);
+}
+
+.header-main {
+  padding: 1.2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--white);
+}
+
+.logo em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.logo-tagline {
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+  margin-top: 0.2rem;
+  font-weight: 300;
+}
+
+/* SEARCH */
+.search-wrap {
+  display: flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 40px;
+  padding: 0.5rem 1rem;
+  gap: 0.6rem;
+  flex: 1;
+  max-width: 360px;
+  transition: border-color 0.2s;
+}
+
+.search-wrap:focus-within { border-color: var(--gold); }
+
+.search-wrap input {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  flex: 1;
+  letter-spacing: 0.02em;
+}
+
+.search-wrap input::placeholder { color: var(--white-faint); }
+
+.search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--gold);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.search-btn:hover { opacity: 0.7; }
+
+/* NAV */
+.header-nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2.5rem;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.header-nav::-webkit-scrollbar { display: none; }
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: var(--white-faint);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.9rem 1.2rem;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.2s;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-btn:hover { color: var(--white); }
+
+.nav-btn.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+/* ── TICKER ── */
+.ticker {
+  background: linear-gradient(90deg, var(--red) 0%, #a52020 100%);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  height: 34px;
+  position: relative;
+  z-index: 1;
+}
+
+.ticker-badge {
+  background: rgba(0,0,0,0.3);
+  padding: 0 1.2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+
+.ticker-track {
+  overflow: hidden;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-inner {
+  white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  animation: tickerScroll 40s linear infinite;
+}
+
+@keyframes tickerScroll {
+  0%   { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ── MAIN ── */
+main {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── HERO ── */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.5px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 3rem;
+  min-height: 480px;
+}
+
+.hero-main {
+  grid-row: 1 / 3;
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: filter 0.3s;
+  min-height: 480px;
+}
+
+.hero-main:hover .hero-main-img { transform: scale(1.04); }
+
+.hero-main-img {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0a1628 0%, #1a2540 50%, #0d1f3c 100%);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease;
+}
+
+.hero-main-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,10,15,0.95) 0%, rgba(8,10,15,0.4) 50%, transparent 100%);
+}
+
+.hero-main-emoji {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-60%);
+  font-size: 5rem;
+  opacity: 0.18;
+  z-index: 1;
+}
+
+.hero-main-body {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+}
+
+.cat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--gold-dim);
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  margin-bottom: 0.8rem;
+}
+
+.hero-main-body h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+  color: var(--white);
+}
+
+.hero-main-body p {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--white-dim);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.7rem;
+  color: var(--white-faint);
+}
+
+.article-meta .src {
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.article-meta .dot { opacity: 0.3; }
+
+/* SIDE CARDS */
+.hero-side {
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: background 0.2s;
+  min-height: 238px;
+}
+
+.hero-side:hover .side-img { transform: scale(1.05); }
+
+.side-img {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1a2540, #0d2b1f);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+
+.side-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,10,15,0.92) 0%, rgba(8,10,15,0.3) 60%, transparent 100%);
+}
+
+.side-emoji {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-60%);
+  font-size: 3rem;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.side-body {
+  position: relative;
+  z-index: 2;
+  padding: 1.2rem 1.4rem;
+}
+
+.side-body h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+}
+
+/* ── DIVIDER ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border2) 0%, transparent 100%);
+}
+
+.gold-bar {
+  width: 3px;
+  height: 22px;
+  background: linear-gradient(180deg, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ── CARD GRID ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.news-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  animation: riseIn 0.45s ease both;
+}
+
+@keyframes riseIn {
+  from { opacity:0; transform: translateY(18px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+.news-card:hover {
+  border-color: rgba(201,168,76,0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.1);
+}
+
+.card-thumb {
+  width: 100%;
+  height: 165px;
+  background: linear-gradient(135deg, var(--surface2), #0d2030);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-thumb::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to top, var(--surface), transparent);
+}
+
+.card-body {
+  padding: 1.2rem 1.3rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-body .cat-pill { margin-bottom: 0.6rem; }
+
+.card-body h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+  flex: 1;
+}
+
+.card-body p {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--white-faint);
+  line-height: 1.6;
+  margin-bottom: 0.9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.68rem;
+}
+
+.card-footer .src { color: var(--gold); font-weight: 500; }
+.card-footer .time { color: var(--white-faint); }
+
+/* Read more arrow */
+.read-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.68rem;
+  color: var(--gold);
+  font-weight: 500;
+  margin-top: 0.6rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.news-card:hover .read-arrow { opacity: 1; }
+
+/* ── LOADING ── */
+.loading-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 5rem 2rem;
+  color: var(--white-faint);
+}
+
+.pulse-ring {
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--border2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-wrap span {
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── ERROR ── */
+.error-box {
+  background: rgba(217,64,64,0.08);
+  border: 1px solid rgba(217,64,64,0.2);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  text-align: center;
+  color: #e88;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.error-box a { color: var(--gold); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.footer-logo em { color: var(--gold); font-style: italic; }
+
+.footer-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+
+.footer-text {
+  font-size: 0.72rem;
+  color: var(--white-faint);
+  letter-spacing: 0.08em;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.footer-text a { color: var(--gold); text-decoration: none; }
+
+/* ── GLOBE DECORATION ── */
+.globe-bg {
+  position: fixed;
+  top: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-section { grid-template-columns: 1fr; grid-template-rows: auto auto auto; min-height: auto; }
+  .hero-main { grid-row: auto; min-height: 320px; }
+  .hero-side { min-height: 180px; }
+  .header-main { padding: 1rem 1.2rem; }
+  main { padding: 1.5rem 1rem 3rem; }
+  .topbar { display: none; }
+  .header-nav { padding: 0 1rem; }
+  .logo { font-size: 1.6rem; }
+}
+
+@media (max-width: 600px) {
+  .hero-main-body h2 { font-size: 1.4rem; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="globe-bg"></div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left" id="liveDate">Loading...</div>
+  <div class="topbar-right">
+    <span>📡 Live Coverage</span>
+    <span>🌐 Worldwide</span>
+    <span id="updateTime">Updated just now</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-main">
+    <div class="logo-wrap">
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="42" height="42" style="flex-shrink:0;">
+          <defs>
+            <radialGradient id="lbg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#1e2d4a"/><stop offset="100%" stop-color="#0a1628"/></radialGradient>
+            <clipPath id="lcc"><circle cx="16" cy="16" r="11"/></clipPath>
+          </defs>
+          <circle cx="16" cy="16" r="15" fill="#0e1117" stroke="#c9a84c" stroke-width="0.8" stroke-opacity="0.4"/>
+          <circle cx="16" cy="16" r="11" fill="url(#lbg)" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.6"/>
+          <g clip-path="url(#lcc)" stroke="#c9a84c" stroke-width="0.4" fill="none" opacity="0.3">
+            <line x1="5" y1="16" x2="27" y2="16"/>
+            <line x1="16" y1="5" x2="16" y2="27"/>
+            <ellipse cx="16" cy="16" rx="11" ry="5.5"/>
+            <ellipse cx="16" cy="16" rx="5.5" ry="11"/>
+          </g>
+          <path d="M 4 16 L 7 16 L 9.5 11.5 L 12 20.5 L 14 13.5 L 16 18 L 18 12 L 20.5 20.5 L 23 14.5 L 25 16 L 28 16"
+            fill="none" stroke="#e8c96a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="16" cy="18" r="2" fill="#e8c96a" opacity="0.9"/>
+          <circle cx="16" cy="18" r="1" fill="#fff" opacity="0.95"/>
+        </svg>
+        <div>
+          <div class="logo">Global<em>Pulse</em>360</div>
+          <div class="logo-tagline">Worldwide News · Every Pulse · Every Angle</div>
+        </div>
+      </div>
+    </div>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Search world news..."/>
+      <button class="search-btn" onclick="doSearch()" title="Search">🔍</button>
+    </div>
+  </div>
+  <nav class="header-nav" id="mainNav"></nav>
+</header>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-badge">⚡ Breaking</div>
+  <div class="ticker-track">
+    <div class="ticker-inner" id="tickerInner">Fetching headlines from around the world...</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div id="heroSection"></div>
+  <div id="gridSection"></div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Global<em>Pulse</em>360</div>
+    <div class="footer-line"></div>
+    <div class="footer-text">
+      Powered by <a href="https://newsdata.io" target="_blank">NewsData.io</a> — Free worldwide news aggregation<br/>
+      To activate live news: get your free key at <a href="https://newsdata.io" target="_blank">newsdata.io</a> and replace <strong>YOUR_NEWSDATA_KEY_HERE</strong> in the HTML file.
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+//  ⚙️  CONFIGURATION
+// ============================================================
+const CATEGORIES = [
+  { label:"World",         query:"world news",         emoji:"🌍" },
+  { label:"Politics",      query:"politics",           emoji:"🏛️" },
+  { label:"Business",      query:"business economy",   emoji:"📈" },
+  { label:"Technology",    query:"technology",         emoji:"💻" },
+  { label:"Sports",        query:"sports",             emoji:"⚽" },
+  { label:"Health",        query:"health medicine",    emoji:"🏥" },
+  { label:"Science",       query:"science",            emoji:"🔬" },
+  { label:"Entertainment", query:"entertainment",      emoji:"🎬" },
+];
+
+// 🔑 Your NewsData.io API key — get free at https://newsdata.io (200 req/day free)
+// Your GNews key won't work here — see instructions below to get a NewsData key
+const NEWS_API_KEY = "pub_046d5588d75240b8ae896134d0cb69ee";
+// ============================================================
+
+let activeCategory = CATEGORIES[0];
+let articles = [];
+
+// Live date
+const now = new Date();
+document.getElementById("liveDate").textContent =
+  now.toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"}).toUpperCase();
+
+// Build nav
+const nav = document.getElementById("mainNav");
+CATEGORIES.forEach(cat => {
+  const btn = document.createElement("button");
+  btn.className = "nav-btn" + (cat.query === activeCategory.query ? " active" : "");
+  btn.textContent = cat.emoji + "  " + cat.label;
+  btn.dataset.query = cat.query;
+  btn.onclick = () => switchCat(cat);
+  nav.appendChild(btn);
+});
+
+function switchCat(cat) {
+  activeCategory = cat;
+  document.querySelectorAll(".nav-btn").forEach(b =>
+    b.classList.toggle("active", b.dataset.query === cat.query));
+  loadNews(cat);
+}
+
+// Search
+document.getElementById("searchInput").addEventListener("keydown", e => {
+  if (e.key === "Enter") doSearch();
+});
+
+function doSearch() {
+  const q = document.getElementById("searchInput").value.trim();
+  if (q) loadNews(activeCategory, q);
+}
+
+// ── FETCH ──
+async function loadNews(cat, query = null) {
+  showLoading();
+
+  if (NEWS_API_KEY === "YOUR_NEWSDATA_KEY_HERE") {
+    await delay(700);
+    articles = demoArticles(cat);
+    render(cat);
+    return;
+  }
+
+  try {
+    const q = encodeURIComponent(query || cat.query);
+    const url = `https://newsdata.io/api/1/news?apikey=${NEWS_API_KEY}&q=${q}&language=en&size=9`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+    if (!data.results?.length) throw new Error("empty");
+
+    articles = data.results.map(a => ({
+      title: a.title,
+      description: a.description || a.content || "",
+      url: a.link,
+      image: a.image_url || null,
+      source: a.source_id || "News",
+      publishedAt: a.pubDate,
+      category: cat.label,
+      emoji: cat.emoji,
+    }));
+
+    render(cat);
+    document.getElementById("updateTime").textContent = "Updated " + timeAgo(new Date().toISOString());
+  } catch {
+    showError();
+  }
+}
+
+// ── RENDER ──
+function render(cat) {
+  if (!articles.length) { showEmpty(); return; }
+  renderHero(articles[0], articles.slice(1,3), cat);
+  renderGrid(articles.slice(3), cat);
+  renderTicker(articles);
+}
+
+function renderHero(main, sides, cat) {
+  const heroSec = document.getElementById("heroSection");
+
+  const sideHTML = sides.map(a => `
+    <a class="hero-side" href="${a.url}" target="_blank" rel="noopener">
+      <div class="side-img" style="${a.image ? `background-image:url('${a.image}');` : ''}"></div>
+      <div class="side-emoji">${cat.emoji}</div>
+      <div class="side-body">
+        <div class="cat-pill">${cat.emoji} ${cat.label}</div>
+        <h3>${a.title}</h3>
+        <div class="article-meta">
+          <span class="src">${a.source}</span>
+          <span class="dot">·</span>
+          <span>${timeAgo(a.publishedAt)}</span>
+        </div>
+      </div>
+    </a>`).join("");
+
+  heroSec.innerHTML = `
+    <div class="hero-section" style="animation: riseIn 0.4s ease both;">
+      <a class="hero-main" href="${main.url}" target="_blank" rel="noopener">
+        <div class="hero-main-img" style="${main.image ? `background-image:url('${main.image}');` : ''}"></div>
+        <div class="hero-main-emoji">${cat.emoji}</div>
+        <div class="hero-main-body">
+          <div class="cat-pill">${cat.emoji} ${cat.label}</div>
+          <h2>${main.title}</h2>
+          <p>${main.description}</p>
+          <div class="article-meta">
+            <span class="src">${main.source}</span>
+            <span class="dot">·</span>
+            <span>${timeAgo(main.publishedAt)}</span>
+            <span class="dot">·</span>
+            <span>Read full story →</span>
+          </div>
+        </div>
+      </a>
+      ${sideHTML}
+    </div>
+    <div class="section-header">
+      <div class="gold-bar"></div>
+      <h2>${cat.emoji}  Latest in ${cat.label}</h2>
+      <div class="section-line"></div>
+    </div>`;
+}
+
+function renderGrid(arts, cat) {
+  const sec = document.getElementById("gridSection");
+  if (!arts.length) { sec.innerHTML = ""; return; }
+  sec.innerHTML = `<div class="card-grid">` +
+    arts.map((a, i) => `
+      <a class="news-card" href="${a.url}" target="_blank" rel="noopener" style="animation-delay:${i * 0.07}s">
+        <div class="card-thumb" style="${a.image ? `background-image:url('${a.image}');` : ''}">
+          ${!a.image ? `<span style="opacity:.18;font-size:3rem;">${cat.emoji}</span>` : ''}
+        </div>
+        <div class="card-body">
+          <div class="cat-pill">${cat.emoji} ${cat.label}</div>
+          <h3>${a.title}</h3>
+          <p>${a.description}</p>
+          <div class="card-footer">
+            <span class="src">${a.source}</span>
+            <span class="time">${timeAgo(a.publishedAt)}</span>
+          </div>
+          <div class="read-arrow">Read story →</div>
+        </div>
+      </a>`).join("") +
+  `</div>`;
+}
+
+function renderTicker(arts) {
+  document.getElementById("tickerInner").textContent =
+    arts.slice(0,6).map(a => `   ◆   ${a.source.toUpperCase()}: ${a.title}`).join("");
+}
+
+// ── STATES ──
+function showLoading() {
+  document.getElementById("heroSection").innerHTML = `
+    <div class="loading-wrap">
+      <div class="pulse-ring"></div>
+      <span>Fetching global headlines...</span>
+    </div>`;
+  document.getElementById("gridSection").innerHTML = "";
+}
+
+function showError() {
+  document.getElementById("heroSection").innerHTML = `
+    <div class="error-box">
+      ⚠️ Could not load news. Check your API key or internet connection.<br/>
+      <small>Get a free key at <a href="https://gnews.io" target="_blank">gnews.io</a> — 100 requests/day free.<br/>
+      Then paste it into the <strong>GNEWS_API_KEY</strong> variable at the top of the script.</small>
+    </div>`;
+  document.getElementById("gridSection").innerHTML = "";
+}
+
+function showEmpty() {
+  document.getElementById("gridSection").innerHTML =
+    `<div style="padding:3rem;text-align:center;color:var(--white-faint);font-size:.9rem;letter-spacing:.1em;">NO ARTICLES FOUND</div>`;
+}
+
+// ── HELPERS ──
+function timeAgo(d) {
+  if (!d) return "";
+  const s = Math.floor((Date.now() - new Date(d)) / 1000);
+  if (s < 60) return s + "s ago";
+  if (s < 3600) return Math.floor(s/60) + "m ago";
+  if (s < 86400) return Math.floor(s/3600) + "h ago";
+  return Math.floor(s/86400) + "d ago";
+}
+
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// ── DEMO DATA ──
+function demoArticles(cat) {
+  const t = new Date();
+  return [
+    { title:"World Leaders Unite on Historic Climate Accord, Pledging Net Zero by 2040", description:"In an unprecedented summit, 140 nations signed binding commitments to carbon neutrality two decades ahead of previous targets.", source:"Reuters", url:"#", image:null, publishedAt:new Date(t-1*3600000).toISOString() },
+    { title:"AI Models Now Outperform Human Doctors in Early Cancer Detection Trials", description:"A landmark peer-reviewed study shows AI systems achieving 97% accuracy across six major cancer types, transforming early diagnosis.", source:"Nature", url:"#", image:null, publishedAt:new Date(t-2*3600000).toISOString() },
+    { title:"Global Markets Surge as Central Banks Signal Coordinated Rate Cuts", description:"Major indices hit record highs after the Fed, ECB, and Bank of England hinted at simultaneous easing in Q2.", source:"Bloomberg", url:"#", image:null, publishedAt:new Date(t-3*3600000).toISOString() },
+    { title:"SpaceX Successfully Lands First Crew on Lunar South Pole", description:"Astronauts set foot on unexplored lunar terrain for the first time in over 50 years in a landmark mission for humanity.", source:"NASA", url:"#", image:null, publishedAt:new Date(t-4*3600000).toISOString() },
+    { title:"Champions League Final Set: Clash of the Titans Expected in Paris", description:"Two giants of European football secured their spots in an electrifying double-header that had fans on the edge of their seats.", source:"ESPN", url:"#", image:null, publishedAt:new Date(t-5*3600000).toISOString() },
+    { title:"Breakthrough Drug Reverses Alzheimer's Symptoms in 78% of Patients", description:"Phase 3 trials show unprecedented success for a compound that clears amyloid plaques and restores cognitive function.", source:"The Lancet", url:"#", image:null, publishedAt:new Date(t-6*3600000).toISOString() },
+    { title:"Renewable Energy Now Powers 45% of the Global Electricity Grid", description:"Solar and wind capacity crossed a historic milestone this quarter, outpacing coal for the first time in recorded history.", source:"IEA", url:"#", image:null, publishedAt:new Date(t-7*3600000).toISOString() },
+    { title:"New Streaming Giant Launches with 200 Exclusive Titles at Launch", description:"The entertainment landscape is reshaped again as the new platform debuts with a catalog rivaling Netflix and Disney+.", source:"Variety", url:"#", image:null, publishedAt:new Date(t-8*3600000).toISOString() },
+    { title:"Quantum Computing Milestone: First 1,000-Qubit Processor Unveiled", description:"Engineers reveal a processor that solves in seconds problems that would take classical computers millions of years.", source:"MIT Tech Review", url:"#", image:null, publishedAt:new Date(t-9*3600000).toISOString() },
+  ].map(a => ({ ...a, category: cat.label, emoji: cat.emoji }));
+}
+
+// Auto-refresh every 10 min
+setInterval(() => loadNews(activeCategory), 600000);
+
+// Kick off
+loadNews(activeCategory);
+</script>
+</body>
+</html>
