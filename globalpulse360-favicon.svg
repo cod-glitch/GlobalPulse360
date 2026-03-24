@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141820"/>
+      <stop offset="100%" stop-color="#080a0f"/>
+    </radialGradient>
+    <radialGradient id="globe" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#1e2d4a"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </radialGradient>
+    <clipPath id="cc">
+      <circle cx="16" cy="15" r="10"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="url(#bg)"/>
+
+  <!-- Globe -->
+  <circle cx="16" cy="15" r="10" fill="url(#globe)" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.7"/>
+
+  <!-- Grid lines -->
+  <g clip-path="url(#cc)" stroke="#c9a84c" stroke-width="0.4" fill="none" opacity="0.25">
+    <line x1="6" y1="15" x2="26" y2="15"/>
+    <line x1="16" y1="5" x2="16" y2="25"/>
+    <ellipse cx="16" cy="15" rx="10" ry="5"/>
+    <ellipse cx="16" cy="15" rx="5" ry="10"/>
+  </g>
+
+  <!-- Pulse wave -->
+  <path d="M 5 15 L 8 15 L 10 11 L 12 19 L 14 13 L 16 17 L 18 12 L 20 19 L 22 14 L 24 15 L 27 15"
+    fill="none" stroke="#e8c96a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Center dot -->
+  <circle cx="16" cy="17" r="1.5" fill="#fff" opacity="0.95"/>
+</svg>
