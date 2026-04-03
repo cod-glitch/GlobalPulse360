@@ -131,73 +131,91 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:2.5rem;
   </div>
 </footer>
 <script>
-const CATS=[
-  {l:"Top Stories",e:"🔥",rss:"/proxy/?hl=en-NG&gl=NG&ceid=NG:en"},
-  {l:"World",      e:"🌍",rss:"/proxy/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
-  {l:"Business",   e:"📈",rss:"/proxy/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6ZW1vU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
-  {l:"Technology", e:"💻",rss:"/proxy/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
-  {l:"Sports",     e:"⚽",rss:"/proxy/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRFp1ZEdvU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
-  {l:"Health",     e:"🏥",rss:"/proxy/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNR3QwTlRFU0FtVnVLQUFQAQ?hl=en-NG&gl=NG&ceid=NG:en"},
-  {l:"Science",    e:"🔬",rss:"/proxy/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRFp0Y1RjU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
-  {l:"Entertainment",e:"🎬",rss:"/proxy/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREpxYW5RU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
+// ═══════════════════════════════════════════════
+// GlobalPulse360 — Google News via Netlify Function
+// Calls /.netlify/functions/proxy?url=... which
+// fetches Google News server-side — zero CORS issues
+// ═══════════════════════════════════════════════
+
+const FN = "/.netlify/functions/proxy?url=";
+
+const CATS = [
+  {l:"Top Stories",e:"🔥",rss:"https://news.google.com/rss?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"World",      e:"🌍",rss:"https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"Business",   e:"📈",rss:"https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6ZW1vU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"Technology", e:"💻",rss:"https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"Sports",     e:"⚽",rss:"https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRFp1ZEdvU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"Health",     e:"🏥",rss:"https://news.google.com/rss/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNR3QwTlRFU0FtVnVLQUFQAQ?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"Science",    e:"🔬",rss:"https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRFp0Y1RjU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"Entertainment",e:"🎬",rss:"https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREpxYW5RU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
 ];
 
-let cat=CATS[0],arts=[];
+let cat=CATS[0], arts=[];
 
-document.getElementById("dateEl").textContent=
+document.getElementById("dateEl").textContent =
   new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"}).toUpperCase();
 
-const navEl=document.getElementById("navEl");
-CATS.forEach(c=>{
-  const b=document.createElement("button");
-  b.className="nb"+(c===cat?" on":"");
-  b.textContent=c.e+"  "+c.l;
-  b.onclick=()=>{document.querySelectorAll(".nb").forEach(x=>x.classList.remove("on"));b.classList.add("on");cat=c;load(c);};
+// Build nav
+const navEl = document.getElementById("navEl");
+CATS.forEach(c => {
+  const b = document.createElement("button");
+  b.className = "nb" + (c===cat?" on":"");
+  b.textContent = c.e+"  "+c.l;
+  b.onclick = () => {
+    document.querySelectorAll(".nb").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");
+    cat = c;
+    load(c);
+  };
   navEl.appendChild(b);
 });
 
-document.getElementById("si").addEventListener("keydown",e=>{if(e.key==="Enter")doSearch();});
+// Search
+document.getElementById("si").addEventListener("keydown", e=>{if(e.key==="Enter")doSearch();});
 function doSearch(){
-  const q=document.getElementById("si").value.trim().toLowerCase();
-  if(!q)return;
-  const f=arts.filter(a=>a.title.toLowerCase().includes(q)||a.desc.toLowerCase().includes(q));
-  f.length?renderAll(cat,f):showEmpty();
+  const q = document.getElementById("si").value.trim().toLowerCase();
+  if(!q) return;
+  const f = arts.filter(a=>a.title.toLowerCase().includes(q)||a.desc.toLowerCase().includes(q));
+  f.length ? renderAll(cat,f) : showEmpty();
 }
 
+// ── FETCH via Netlify Function ──
 async function load(c){
   show();
   try{
-    // Fetch via Netlify proxy — routes through _redirects to Google News RSS
-    const res=await fetch(c.rss);
-    if(!res.ok)throw new Error("HTTP "+res.status);
-    const raw=await res.text();
-    if(!raw.includes("<item>"))throw new Error("No items in feed");
+    const url = FN + encodeURIComponent(c.rss);
+    const res = await fetch(url);
+    if(!res.ok) throw new Error("Function returned "+res.status);
+    const raw = await res.text();
+    if(!raw.includes("<item>")) throw new Error("No news items found");
 
-    const xml=new DOMParser().parseFromString(raw,"text/xml");
-    const items=Array.from(xml.querySelectorAll("item")).slice(0,9);
-    if(!items.length)throw new Error("Empty feed");
+    const xml = new DOMParser().parseFromString(raw,"text/xml");
+    const items = Array.from(xml.querySelectorAll("item")).slice(0,9);
+    if(!items.length) throw new Error("Empty feed");
 
-    arts=items.map(item=>{
-      const g=tag=>item.querySelector(tag)?.textContent?.trim()||"";
-      const src=item.querySelector("source")?.textContent?.trim()||"Google News";
-      const descHtml=g("description");
-      const imgMatch=descHtml.match(/<img[^>]+src="([^"]+)"/);
-      const img=imgMatch?imgMatch[1]:null;
-      const desc=descHtml.replace(/<[^>]+>/g,"").replace(/\s+/g," ").trim().slice(0,200);
-      return{title:g("title"),desc,url:g("link"),img,src,pub:g("pubDate")};
+    arts = items.map(item=>{
+      const g = tag => item.querySelector(tag)?.textContent?.trim()||"";
+      const source = item.querySelector("source")?.textContent?.trim()||"Google News";
+      const descHtml = g("description");
+      const imgMatch = descHtml.match(/<img[^>]+src="([^"]+)"/);
+      const img = imgMatch ? imgMatch[1] : null;
+      const desc = descHtml.replace(/<[^>]+>/g,"").replace(/\s+/g," ").trim().slice(0,200);
+      return {title:g("title"), desc, url:g("link"), img, src:source, pub:g("pubDate")};
     }).filter(a=>a.title&&a.url);
 
-    if(!arts.length)throw new Error("No valid articles");
-    renderAll(c,arts);
-    document.getElementById("upEl").textContent="Updated "+ago(new Date().toISOString());
-  }catch(err){
+    if(!arts.length) throw new Error("No valid articles parsed");
+    renderAll(c, arts);
+    document.getElementById("upEl").textContent = "Updated "+ago(new Date().toISOString());
+  } catch(err){
     console.error(err);
     showErr(err.message);
   }
 }
 
-function renderAll(c,list){
-  const m=list[0],sd=list.slice(1,3),grid=list.slice(3);
+// ── RENDER ──
+function renderAll(c, list){
+  const m=list[0], sd=list.slice(1,3), grid=list.slice(3);
+
   document.getElementById("heroEl").innerHTML=`
     <div class="hgrid">
       <div class="hmain" onclick="go('${sf(m.url)}')">
@@ -207,7 +225,11 @@ function renderAll(c,list){
           <div class="pill">${c.e} ${c.l}</div>
           <h2>${x(m.title)}</h2>
           <p>${x(m.desc)}</p>
-          <div class="meta"><span class="src">${x(m.src)}</span><span>·</span><span>${ago(m.pub)}</span><span>·</span><span>Read full story →</span></div>
+          <div class="meta">
+            <span class="src">${x(m.src)}</span>
+            <span>·</span><span>${ago(m.pub)}</span>
+            <span>·</span><span>Read full story →</span>
+          </div>
         </div>
       </div>
       ${sd.map(a=>`
@@ -223,8 +245,8 @@ function renderAll(c,list){
     </div>
     <div class="sh"><div class="gb"></div><h2>${c.e}&nbsp; Latest in ${c.l}</h2><div class="sl"></div></div>`;
 
-  document.getElementById("gridEl").innerHTML=grid.length
-    ?`<div class="cg">${grid.map((a,i)=>`
+  document.getElementById("gridEl").innerHTML = grid.length
+    ? `<div class="cg">${grid.map((a,i)=>`
         <div class="card" onclick="go('${sf(a.url)}')" style="animation-delay:${i*.07}s">
           <div class="ci" style="${a.img?`background-image:url('${a.img}');background-size:cover;background-position:center`:``}">
             ${!a.img?`<span style="opacity:.15">${c.e}</span>`:""}
@@ -236,9 +258,9 @@ function renderAll(c,list){
             <div class="cf"><span class="src">${x(a.src)}</span><span class="time">${ago(a.pub)}</span></div>
           </div>
         </div>`).join("")}</div>`
-    :"";
+    : "";
 
-  document.getElementById("tickEl").textContent=
+  document.getElementById("tickEl").textContent =
     list.slice(0,6).map(a=>`   ◆   ${a.src.toUpperCase()}: ${a.title}`).join("");
 }
 
@@ -247,7 +269,7 @@ function show(){
   document.getElementById("gridEl").innerHTML="";
 }
 function showErr(msg){
-  document.getElementById("heroEl").innerHTML=`<div class="err">⚠️ Could not load news.<br/><small>${msg||"Please refresh the page."}</small></div>`;
+  document.getElementById("heroEl").innerHTML=`<div class="err">⚠️ Could not load news.<br/><small>${msg}</small></div>`;
   document.getElementById("gridEl").innerHTML="";
 }
 function showEmpty(){
@@ -264,8 +286,10 @@ function ago(d){
   if(s<86400)return Math.floor(s/3600)+"h ago";
   return Math.floor(s/86400)+"d ago";
 }
+
 setInterval(()=>load(cat),600000);
 load(cat);
 </script>
 </body>
-</html>
+  </html>
+  
