@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GlobalPulse360 — World News</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJsZyIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNTAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWUyZDRhIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGExNjI4Ii8+PC9yYWRpYWxHcmFkaWVudD48Y2xpcFBhdGggaWQ9ImxjIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgcng9IjYiIGZpbGw9IiMwODBhMGYiLz48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMSIgZmlsbD0idXJsKCNsZykiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iLjYiLz48cGF0aCBkPSJNNCAxNkw3IDE2TDkuNSAxMS41TDEyIDIwLjVMMTQgMTMuNUwxNiAxOEwxOCAxMkwyMC41IDIwLjVMMjMgMTQuNUwyNSAxNkwyOCAxNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZThjOTZhIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBjeD0iMTYiIGN5PSIxOCIgcj0iMiIgZmlsbD0iI2U4Yzk2YSIvPjwvc3ZnPg=="/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--black:#080a0f;--deep:#0e1117;--surface:#141820;--surface2:#1c2230;--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);--gold:#c9a84c;--gold-l:#e8c96a;--gold-d:rgba(201,168,76,.15);--w:#f0ede8;--wd:rgba(240,237,232,.55);--wf:rgba(240,237,232,.25);--red:#d94040;--r:10px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--w);font-family:'Outfit',sans-serif;min-height:100vh;overflow-x:hidden}
+.topbar{background:var(--deep);border-bottom:1px solid var(--border);padding:.45rem 2.5rem;display:flex;justify-content:space-between;align-items:center;z-index:10;position:relative}
+.tl{font-size:.7rem;color:var(--wf);letter-spacing:.12em;text-transform:uppercase}
+.tr{display:flex;gap:1.5rem;font-size:.7rem;color:var(--wf)}
+header{background:var(--deep);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
+.hm{padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.lr{display:flex;align-items:center;gap:.75rem}
+.logo{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:700;letter-spacing:.02em;line-height:1;color:var(--w)}
+.logo em{font-style:italic;color:var(--gold)}
+.ltag{font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--wf);margin-top:.2rem;font-weight:300}
+.sb{display:flex;align-items:center;background:var(--surface);border:1px solid var(--border2);border-radius:40px;padding:.5rem 1rem;gap:.6rem;flex:1;max-width:360px;transition:border-color .2s}
+.sb:focus-within{border-color:var(--gold)}
+.sb input{background:none;border:none;outline:none;color:var(--w);font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:300;flex:1}
+.sb input::placeholder{color:var(--wf)}
+.sb button{background:none;border:none;cursor:pointer;color:var(--gold);font-size:1rem;padding:0}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2.5rem;display:flex;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.nb{background:none;border:none;color:var(--wf);font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 1.2rem;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s}
+.nb:hover{color:var(--w)}.nb.on{color:var(--gold);border-bottom-color:var(--gold)}
+.ticker{background:linear-gradient(90deg,var(--red),#a52020);display:flex;align-items:center;overflow:hidden;height:34px;z-index:1;position:relative}
+.tbadge{background:rgba(0,0,0,.3);padding:0 1.2rem;height:100%;display:flex;align-items:center;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;border-right:1px solid rgba(255,255,255,.15)}
+.ttrack{overflow:hidden;flex:1;height:100%;display:flex;align-items:center}
+.ttext{white-space:nowrap;font-size:.78rem;animation:sc 50s linear infinite}
+@keyframes sc{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
+main{max-width:1300px;margin:0 auto;padding:2.5rem 2rem 4rem;position:relative;z-index:1}
+.hgrid{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:1fr 1fr;gap:1.5px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:3rem;min-height:480px}
+.hmain{grid-row:1/3;background:var(--surface);position:relative;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;min-height:480px}
+.hmain:hover .bi{transform:scale(1.04)}
+.bi{position:absolute;inset:0;background:linear-gradient(135deg,#0a1628,#1a2540);background-size:cover;background-position:center;transition:transform .6s ease}
+.bi::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,10,15,.95) 0%,rgba(8,10,15,.4) 50%,transparent 100%)}
+.hem{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);font-size:5rem;opacity:.1;z-index:1;pointer-events:none}
+.hb{position:relative;z-index:2;padding:2rem}
+.pill{display:inline-flex;align-items:center;gap:.4rem;background:var(--gold-d);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:.6rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .7rem;border-radius:20px;margin-bottom:.8rem}
+.hb h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;line-height:1.25;margin-bottom:.75rem;color:var(--w)}
+.hb p{font-size:.85rem;font-weight:300;color:var(--wd);line-height:1.6;margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.meta{display:flex;align-items:center;gap:1rem;font-size:.7rem;color:var(--wf)}
+.meta .src{color:var(--gold);font-weight:500}
+.hside{background:var(--surface);position:relative;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;min-height:238px}
+.hside:hover .bi{transform:scale(1.05)}
+.sem{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);font-size:3rem;opacity:.1;z-index:1;pointer-events:none}
+.sbody{position:relative;z-index:2;padding:1.2rem 1.4rem}
+.sbody h3{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;line-height:1.3;margin-bottom:.5rem;color:var(--w)}
+.sh{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.sh h2{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--w);white-space:nowrap}
+.sl{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
+.gb{width:3px;height:22px;background:linear-gradient(180deg,var(--gold),var(--gold-l));border-radius:2px;flex-shrink:0}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.2rem;margin-bottom:3rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:border-color .2s,transform .2s,box-shadow .2s;animation:ri .45s ease both}
+.card:hover{border-color:rgba(201,168,76,.3);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+@keyframes ri{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.ci{width:100%;height:165px;background:linear-gradient(135deg,var(--surface2),#0d2030);background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;font-size:3rem;flex-shrink:0}
+.cb{padding:1.2rem 1.3rem 1.3rem;display:flex;flex-direction:column;flex:1}
+.cb h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;line-height:1.35;color:var(--w);margin:.4rem 0 .5rem;flex:1}
+.cb p{font-size:.78rem;font-weight:300;color:var(--wf);line-height:1.6;margin-bottom:.9rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cf{display:flex;justify-content:space-between;align-items:center;padding-top:.8rem;border-top:1px solid var(--border);font-size:.68rem}
+.cf .src{color:var(--gold);font-weight:500}.cf .time{color:var(--wf)}
+.loading{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.2rem;padding:5rem 2rem;color:var(--wf)}
+.ring{width:44px;height:44px;border:2px solid var(--border2);border-top-color:var(--gold);border-radius:50%;animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading span{font-size:.8rem;font-weight:300;letter-spacing:.1em;text-transform:uppercase}
+.err{background:rgba(217,64,64,.08);border:1px solid rgba(217,64,64,.2);border-radius:var(--r);padding:2.5rem;text-align:center;color:#e88;font-size:.9rem;line-height:1.8}
+footer{background:var(--deep);border-top:1px solid var(--border);padding:2.5rem;position:relative;z-index:1}
+.fi{max-width:1300px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:.8rem}
+.fl{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--w)}
+.fl em{color:var(--gold);font-style:italic}
+.fli{width:40px;height:1px;background:var(--gold);opacity:.4}
+.ft{font-size:.72rem;color:var(--wf);letter-spacing:.08em;text-align:center;line-height:1.8}
+.ft a{color:var(--gold);text-decoration:none}
+.glow{position:fixed;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,.04) 0%,transparent 70%);border-radius:50%;pointer-events:none;z-index:0}
+@media(max-width:900px){.hgrid{grid-template-columns:1fr;grid-template-rows:auto auto auto;min-height:auto}.hmain{grid-row:auto;min-height:320px}.hside{min-height:180px}.hm{padding:1rem 1.2rem}main{padding:1.5rem 1rem 3rem}.topbar{display:none}nav{padding:0 1rem}.logo{font-size:1.6rem}}
+@media(max-width:600px){.hb h2{font-size:1.4rem}.cg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="topbar">
+  <div class="tl" id="dateEl"></div>
+  <div class="tr"><span>📡 Live</span><span>🌐 Worldwide</span><span id="upEl">Loading...</span></div>
+</div>
+<header>
+  <div class="hm">
+    <div class="lr">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="42" height="42" style="flex-shrink:0">
+        <defs><radialGradient id="lg2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#1e2d4a"/><stop offset="100%" stop-color="#0a1628"/></radialGradient><clipPath id="lc2"><circle cx="16" cy="16" r="11"/></clipPath></defs>
+        <circle cx="16" cy="16" r="15" fill="#0e1117" stroke="#c9a84c" stroke-width=".8" stroke-opacity=".4"/>
+        <circle cx="16" cy="16" r="11" fill="url(#lg2)" stroke="#c9a84c" stroke-width="1" stroke-opacity=".6"/>
+        <g clip-path="url(#lc2)" stroke="#c9a84c" stroke-width=".4" fill="none" opacity=".3">
+          <line x1="5" y1="16" x2="27" y2="16"/><line x1="16" y1="5" x2="16" y2="27"/>
+          <ellipse cx="16" cy="16" rx="11" ry="5.5"/><ellipse cx="16" cy="16" rx="5.5" ry="11"/>
+        </g>
+        <path d="M4 16L7 16L9.5 11.5L12 20.5L14 13.5L16 18L18 12L20.5 20.5L23 14.5L25 16L28 16" fill="none" stroke="#e8c96a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="16" cy="18" r="2" fill="#e8c96a" opacity=".9"/>
+        <circle cx="16" cy="18" r="1" fill="#fff" opacity=".95"/>
+      </svg>
+      <div>
+        <div class="logo">Global<em>Pulse</em>360</div>
+        <div class="ltag">Worldwide News · Every Pulse · Every Angle</div>
+      </div>
+    </div>
+    <div class="sb">
+      <input type="text" id="si" placeholder="Search world news..."/>
+      <button onclick="doSearch()">🔍</button>
+    </div>
+  </div>
+  <nav id="navEl"></nav>
+</header>
+<div class="ticker">
+  <div class="tbadge">⚡ Breaking</div>
+  <div class="ttrack"><div class="ttext" id="tickEl">Fetching headlines...</div></div>
+</div>
+<main>
+  <div id="heroEl"></div>
+  <div id="gridEl"></div>
+</main>
+<footer>
+  <div class="fi">
+    <div class="fl">Global<em>Pulse</em>360</div>
+    <div class="fli"></div>
+    <div class="ft">Powered by <a href="https://news.google.com" target="_blank">Google News</a> · Live worldwide coverage</div>
+  </div>
+</footer>
+<script>
+const CATS=[
+  {l:"Top Stories",e:"🔥",rss:"/proxy/?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"World",      e:"🌍",rss:"/proxy/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"Business",   e:"📈",rss:"/proxy/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6ZW1vU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"Technology", e:"💻",rss:"/proxy/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"Sports",     e:"⚽",rss:"/proxy/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRFp1ZEdvU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"Health",     e:"🏥",rss:"/proxy/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNR3QwTlRFU0FtVnVLQUFQAQ?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"Science",    e:"🔬",rss:"/proxy/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRFp0Y1RjU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
+  {l:"Entertainment",e:"🎬",rss:"/proxy/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREpxYW5RU0FtVnVHZ0pPUnlnQVAB?hl=en-NG&gl=NG&ceid=NG:en"},
+];
+
+let cat=CATS[0],arts=[];
+
+document.getElementById("dateEl").textContent=
+  new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"}).toUpperCase();
+
+const navEl=document.getElementById("navEl");
+CATS.forEach(c=>{
+  const b=document.createElement("button");
+  b.className="nb"+(c===cat?" on":"");
+  b.textContent=c.e+"  "+c.l;
+  b.onclick=()=>{document.querySelectorAll(".nb").forEach(x=>x.classList.remove("on"));b.classList.add("on");cat=c;load(c);};
+  navEl.appendChild(b);
+});
+
+document.getElementById("si").addEventListener("keydown",e=>{if(e.key==="Enter")doSearch();});
+function doSearch(){
+  const q=document.getElementById("si").value.trim().toLowerCase();
+  if(!q)return;
+  const f=arts.filter(a=>a.title.toLowerCase().includes(q)||a.desc.toLowerCase().includes(q));
+  f.length?renderAll(cat,f):showEmpty();
+}
+
+async function load(c){
+  show();
+  try{
+    // Fetch via Netlify proxy — routes through _redirects to Google News RSS
+    const res=await fetch(c.rss);
+    if(!res.ok)throw new Error("HTTP "+res.status);
+    const raw=await res.text();
+    if(!raw.includes("<item>"))throw new Error("No items in feed");
+
+    const xml=new DOMParser().parseFromString(raw,"text/xml");
+    const items=Array.from(xml.querySelectorAll("item")).slice(0,9);
+    if(!items.length)throw new Error("Empty feed");
+
+    arts=items.map(item=>{
+      const g=tag=>item.querySelector(tag)?.textContent?.trim()||"";
+      const src=item.querySelector("source")?.textContent?.trim()||"Google News";
+      const descHtml=g("description");
+      const imgMatch=descHtml.match(/<img[^>]+src="([^"]+)"/);
+      const img=imgMatch?imgMatch[1]:null;
+      const desc=descHtml.replace(/<[^>]+>/g,"").replace(/\s+/g," ").trim().slice(0,200);
+      return{title:g("title"),desc,url:g("link"),img,src,pub:g("pubDate")};
+    }).filter(a=>a.title&&a.url);
+
+    if(!arts.length)throw new Error("No valid articles");
+    renderAll(c,arts);
+    document.getElementById("upEl").textContent="Updated "+ago(new Date().toISOString());
+  }catch(err){
+    console.error(err);
+    showErr(err.message);
+  }
+}
+
+function renderAll(c,list){
+  const m=list[0],sd=list.slice(1,3),grid=list.slice(3);
+  document.getElementById("heroEl").innerHTML=`
+    <div class="hgrid">
+      <div class="hmain" onclick="go('${sf(m.url)}')">
+        <div class="bi" style="${m.img?`background-image:url('${m.img}')`:``}"></div>
+        <div class="hem">${c.e}</div>
+        <div class="hb">
+          <div class="pill">${c.e} ${c.l}</div>
+          <h2>${x(m.title)}</h2>
+          <p>${x(m.desc)}</p>
+          <div class="meta"><span class="src">${x(m.src)}</span><span>·</span><span>${ago(m.pub)}</span><span>·</span><span>Read full story →</span></div>
+        </div>
+      </div>
+      ${sd.map(a=>`
+        <div class="hside" onclick="go('${sf(a.url)}')">
+          <div class="bi" style="${a.img?`background-image:url('${a.img}')`:``}"></div>
+          <div class="sem">${c.e}</div>
+          <div class="sbody">
+            <div class="pill">${c.e} ${c.l}</div>
+            <h3>${x(a.title)}</h3>
+            <div class="meta"><span class="src">${x(a.src)}</span><span>·</span><span>${ago(a.pub)}</span></div>
+          </div>
+        </div>`).join("")}
+    </div>
+    <div class="sh"><div class="gb"></div><h2>${c.e}&nbsp; Latest in ${c.l}</h2><div class="sl"></div></div>`;
+
+  document.getElementById("gridEl").innerHTML=grid.length
+    ?`<div class="cg">${grid.map((a,i)=>`
+        <div class="card" onclick="go('${sf(a.url)}')" style="animation-delay:${i*.07}s">
+          <div class="ci" style="${a.img?`background-image:url('${a.img}');background-size:cover;background-position:center`:``}">
+            ${!a.img?`<span style="opacity:.15">${c.e}</span>`:""}
+          </div>
+          <div class="cb">
+            <div class="pill">${c.e} ${c.l}</div>
+            <h3>${x(a.title)}</h3>
+            <p>${x(a.desc)}</p>
+            <div class="cf"><span class="src">${x(a.src)}</span><span class="time">${ago(a.pub)}</span></div>
+          </div>
+        </div>`).join("")}</div>`
+    :"";
+
+  document.getElementById("tickEl").textContent=
+    list.slice(0,6).map(a=>`   ◆   ${a.src.toUpperCase()}: ${a.title}`).join("");
+}
+
+function show(){
+  document.getElementById("heroEl").innerHTML=`<div class="loading"><div class="ring"></div><span>Fetching global headlines...</span></div>`;
+  document.getElementById("gridEl").innerHTML="";
+}
+function showErr(msg){
+  document.getElementById("heroEl").innerHTML=`<div class="err">⚠️ Could not load news.<br/><small>${msg||"Please refresh the page."}</small></div>`;
+  document.getElementById("gridEl").innerHTML="";
+}
+function showEmpty(){
+  document.getElementById("gridEl").innerHTML=`<div style="padding:3rem;text-align:center;color:var(--wf);letter-spacing:.1em">NO RESULTS FOUND</div>`;
+}
+function go(u){if(u&&u!=="#")window.open(u,"_blank","noopener,noreferrer");}
+function x(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function sf(u){return(u||"#").replace(/'/g,"%27");}
+function ago(d){
+  if(!d)return"";
+  const s=Math.floor((Date.now()-new Date(d))/1000);
+  if(s<60)return s+"s ago";
+  if(s<3600)return Math.floor(s/60)+"m ago";
+  if(s<86400)return Math.floor(s/3600)+"h ago";
+  return Math.floor(s/86400)+"d ago";
+}
+setInterval(()=>load(cat),600000);
+load(cat);
+</script>
+</body>
+</html>
