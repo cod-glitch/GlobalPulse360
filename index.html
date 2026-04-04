@@ -290,4 +290,19 @@ function showErr(msg){
 function showEmpty(){
   document.getElementById("gridEl").innerHTML=`<div style="padding:3rem;text-align:center;color:var(--wf);letter-spacing:.1em">NO RESULTS FOUND</div>`;
 }
-function go(u){if(u&&u!=="#")window.open(u,"_blank"
+function go(u){if(u&&u!=="#")window.open(u,"_blank","noopener,noreferrer");}
+function x(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function sf(u){return(u||"#").replace(/'/g,"%27");}
+function ago(d){
+  if(!d)return"";
+  const s=Math.floor((Date.now()-new Date(d))/1000);
+  if(s<60)return s+"s ago";
+  if(s<3600)return Math.floor(s/60)+"m ago";
+  if(s<86400)return Math.floor(s/3600)+"h ago";
+  return Math.floor(s/86400)+"d ago";
+}
+setInterval(()=>load(cat),600000);
+load(cat);
+</script>
+</body>
+</html>
